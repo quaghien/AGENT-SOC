@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">AgentSOC POC architecture flow</title>
+  <desc id="desc">Raw alert flows through perception, NCE, SSE, RSEM, playbook, dry-run execution, and monitoring with a shared knowledge store.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#263238"/>
+    </marker>
+    <style>
+      .bg { fill: #f7f9fb; }
+      .box { fill: #ffffff; stroke: #263238; stroke-width: 1.6; rx: 8; }
+      .io { fill: #eef7ff; stroke: #0b5cad; }
+      .reason { fill: #f5f0ff; stroke: #6841b7; }
+      .act { fill: #eefaf1; stroke: #248046; }
+      .guard { fill: #fff6e6; stroke: #b36b00; }
+      .store { fill: #f1f4f6; stroke: #546e7a; stroke-dasharray: 7 5; }
+      .line { stroke: #263238; stroke-width: 1.8; fill: none; marker-end: url(#arrow); }
+      .soft { stroke: #607d8b; stroke-width: 1.5; fill: none; marker-end: url(#arrow); stroke-dasharray: 5 5; }
+      text { font-family: Arial, Helvetica, sans-serif; fill: #17212b; }
+      .h { font-size: 24px; font-weight: 700; }
+      .t { font-size: 16px; font-weight: 700; }
+      .s { font-size: 13px; }
+      .xs { font-size: 12px; fill: #46545f; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="560"/>
+  <text class="h" x="40" y="44">AgentSOC POC - Flow kiến trúc</text>
+  <text class="xs" x="40" y="68">Mọi hành động SOC là dry-run; OpenAI chỉ dùng cho run nhỏ dưới budget.</text>
+
+  <rect class="box io" x="40" y="120" width="130" height="82"/>
+  <text class="t" x="64" y="152">Raw Alert</text>
+  <text class="s" x="58" y="178">Kerberos event</text>
+
+  <rect class="box io" x="215" y="120" width="145" height="82"/>
+  <text class="t" x="244" y="146">Perception</text>
+  <text class="s" x="234" y="172">normalize</text>
+  <text class="s" x="234" y="190">enrich/dedupe</text>
+
+  <rect class="box reason" x="405" y="120" width="130" height="82"/>
+  <text class="t" x="451" y="146">NCE</text>
+  <text class="s" x="428" y="172">build H1/H2/H3</text>
+  <text class="s" x="428" y="190">mock/OpenAI</text>
+
+  <rect class="box reason" x="580" y="120" width="130" height="82"/>
+  <text class="t" x="626" y="146">SSE</text>
+  <text class="s" x="600" y="172">graph simulate</text>
+  <text class="s" x="600" y="190">feasibility</text>
+
+  <rect class="box reason" x="755" y="120" width="130" height="82"/>
+  <text class="t" x="802" y="146">RSEM</text>
+  <text class="s" x="774" y="172">rank actions</text>
+  <text class="s" x="774" y="190">score = 0.599</text>
+
+  <rect class="box act" x="930" y="120" width="130" height="82"/>
+  <text class="t" x="960" y="146">Playbook</text>
+  <text class="s" x="952" y="172">steps + approval</text>
+  <text class="s" x="952" y="190">rollback notes</text>
+
+  <rect class="box act" x="1105" y="120" width="130" height="82"/>
+  <text class="t" x="1130" y="146">Dry-run</text>
+  <text class="s" x="1123" y="172">simulate only</text>
+  <text class="s" x="1123" y="190">no real SOC call</text>
+
+  <path class="line" d="M170 161 H207"/>
+  <path class="line" d="M360 161 H397"/>
+  <path class="line" d="M535 161 H572"/>
+  <path class="line" d="M710 161 H747"/>
+  <path class="line" d="M885 161 H922"/>
+  <path class="line" d="M1060 161 H1097"/>
+
+  <rect class="box io" x="540" y="300" width="200" height="86"/>
+  <text class="t" x="576" y="330">Monitoring</text>
+  <text class="s" x="568" y="356">execution summary</text>
+  <text class="s" x="568" y="374">knowledge update</text>
+  <path class="line" d="M1170 202 V262 H640 V292"/>
+
+  <rect class="store" x="220" y="430" width="840" height="76" rx="10"/>
+  <text class="t" x="498" y="460">Enterprise Knowledge Store</text>
+  <text class="s" x="330" y="486">CMDB/IAM/topology/policy/ATT&amp;CK graph - synthetic 50-node POC fixture</text>
+
+  <path class="soft" d="M287 202 V430"/>
+  <path class="soft" d="M470 202 V430"/>
+  <path class="soft" d="M645 202 V430"/>
+  <path class="soft" d="M820 202 V430"/>
+  <path class="soft" d="M640 386 V430"/>
+
+  <rect class="box guard" x="40" y="300" width="365" height="86"/>
+  <text class="t" x="64" y="330">Input POC</text>
+  <text class="s" x="64" y="356">user123, ws-fin-27, srv-fin-03</text>
+  <text class="s" x="64" y="374">Kerberos TGT Request, Success</text>
+
+  <rect class="box guard" x="875" y="300" width="360" height="86"/>
+  <text class="t" x="900" y="330">Safety gates</text>
+  <text class="s" x="900" y="356">OpenAI: max 30 calls/run, model gpt-5.4-nano</text>
+  <text class="s" x="900" y="374">Stress/benchmark: mock-only by default</text>
+
+  <text class="xs" x="40" y="535">Output chính: artifacts JSON gồm incident, hypotheses, feasibility, ranked_actions, playbook, execution, monitoring, cycle_result.</text>
+</svg>

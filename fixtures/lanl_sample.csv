@@ -1,0 +1,4 @@
+event_id,timestamp,source_user,source_host,target_host,event_type,outcome,source_ip,target_ip
+evt-poc-001,2023-11-14T13:22:41Z,user123,ws-fin-27,srv-fin-03,Kerberos TGT Request,Success,10.27.14.8,10.27.3.3
+evt-poc-002,2023-11-14T13:23:01Z,user123,ws-fin-27,srv-fin-03,Kerberos TGT Request,Success,10.27.14.8,10.27.3.3
+evt-poc-003,2023-11-14T13:24:12Z,user124,ws-lab-01,domain-controller-01,Kerberos TGT Request,Success,10.27.15.9,10.27.0.10

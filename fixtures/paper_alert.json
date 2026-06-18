@@ -1,0 +1,15 @@
+{
+  "event_id": "evt-poc-001",
+  "timestamp": "2023-11-14T13:22:41Z",
+  "source_user": "user123",
+  "source_host": "ws-fin-27",
+  "target_host": "srv-fin-03",
+  "event_type": "Kerberos TGT Request",
+  "outcome": "Success",
+  "source_ip": "10.27.14.8",
+  "target_ip": "10.27.3.3",
+  "raw": {
+    "dataset_style": "LANL-inspired synthetic sample",
+    "safe_for_llm": true
+  }
+}
